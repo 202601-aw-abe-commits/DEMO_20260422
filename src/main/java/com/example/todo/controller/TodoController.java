@@ -41,8 +41,9 @@ public class TodoController {
         return "todo/confirm";
     }
 
-    @GetMapping("/complete")
-    public String completePage() {
+    @PostMapping("/complete")
+    public String completePage(@RequestParam("title") String title, Model model) {
+        model.addAttribute("title", title);
         return "todo/complete";
     }
 
