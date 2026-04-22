@@ -27,6 +27,10 @@ public class TodoService {
         return todoMapper.findById(id);
     }
 
+    public boolean update(Todo todo) {
+        return todoMapper.update(todo) > 0;
+    }
+
     public boolean deleteById(Long id) {
         return todoMapper.deleteById(id) > 0;
     }
