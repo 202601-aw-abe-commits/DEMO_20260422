@@ -41,6 +41,7 @@
                     <td th:text="${todo.title}">サンプルタスク</td>
                     <td class="pe-4" th:text="${todo.completed} ? '完了' : '未完了'">未完了</td>
                     <td class="text-center pe-4">
+                        <a th:href="@{/todo/{id}/edit(id=${todo.id})}" class="btn btn-outline-primary btn-sm me-1">編集</a>
                         <form th:action="@{/todo/{id}/delete(id=${todo.id})}"
                               method="post"
                               class="d-inline"

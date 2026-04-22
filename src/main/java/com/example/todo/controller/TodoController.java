@@ -35,6 +35,13 @@ public class TodoController {
         return "todo/form";
     }
 
+    @GetMapping("/{id}/edit")
+    public String editPage(@PathVariable("id") Long id, Model model) {
+        Todo todo = todoService.findById(id);
+        model.addAttribute("todo", todo);
+        return "todo/edit";
+    }
+
     @PostMapping("/confirm")
     public String confirmPage(
             @RequestParam("title") String title,
