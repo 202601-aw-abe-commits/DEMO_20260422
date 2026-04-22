@@ -31,6 +31,16 @@ public class TodoService {
         return todoMapper.update(todo) > 0;
     }
 
+    public boolean toggleCompleted(Long id) {
+        Todo todo = todoMapper.findById(id);
+        if (todo == null) {
+            return false;
+        }
+        Boolean completed = todo.getCompleted() != null ? todo.getCompleted() : false;
+        todo.setCompleted(!completed);
+        return todoMapper.update(todo) > 0;
+    }
+
     public boolean deleteById(Long id) {
         return todoMapper.deleteById(id) > 0;
     }
