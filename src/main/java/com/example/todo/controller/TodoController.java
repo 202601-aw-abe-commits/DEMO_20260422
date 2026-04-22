@@ -23,11 +23,7 @@ public class TodoController {
 
     @GetMapping
     public String list(Model model) {
-        List<TodoItem> todos = List.of(
-                new TodoItem(1L, "Spring Bootのセットアップ", "未着手"),
-                new TodoItem(2L, "ToDo一覧画面の作成", "進行中"),
-                new TodoItem(3L, "登録画面の作成", "未着手"));
-
+        List<Todo> todos = todoService.findAll();
         model.addAttribute("todos", todos);
         return "todo/list";
     }
@@ -56,8 +52,5 @@ public class TodoController {
         todo.setCompleted(false);
         todoService.create(todo);
         return "redirect:/todo";
-    }
-
-    public record TodoItem(Long id, String title, String status) {
     }
 }

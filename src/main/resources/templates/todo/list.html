@@ -27,9 +27,9 @@
                 </thead>
                 <tbody>
                 <tr th:each="todo : ${todos}">
-                    <td class="px-4" th:text="${todo.id()}">1</td>
-                    <td th:text="${todo.title()}">サンプルタスク</td>
-                    <td class="pe-4" th:text="${todo.status()}">未着手</td>
+                    <td class="px-4" th:text="${todo.id}">1</td>
+                    <td th:text="${todo.title}">サンプルタスク</td>
+                    <td class="pe-4" th:text="${todo.completed} ? '完了' : '未完了'">未完了</td>
                 </tr>
                 <tr th:if="${#lists.isEmpty(todos)}">
                     <td colspan="3" class="text-center py-4 text-muted">ToDoがありません</td>
