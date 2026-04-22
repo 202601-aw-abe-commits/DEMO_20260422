@@ -27,6 +27,11 @@ public class TodoController {
         return "todo/new";
     }
 
+    @GetMapping("/confirm")
+    public String confirmPage() {
+        return "todo/confirm";
+    }
+
     public record TodoItem(Long id, String title, String status) {
     }
 }
