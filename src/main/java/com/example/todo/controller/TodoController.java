@@ -2,6 +2,8 @@ package com.example.todo.controller;
 
 import java.util.List;
 
+import com.example.todo.model.Todo;
+import com.example.todo.service.TodoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/todo")
 public class TodoController {
+
+    private final TodoService todoService;
+
+    public TodoController(TodoService todoService) {
+        this.todoService = todoService;
+    }
 
     @GetMapping
     public String list(Model model) {
@@ -42,9 +50,12 @@ public class TodoController {
     }
 
     @PostMapping("/complete")
-    public String completePage(@RequestParam("title") String title, Model model) {
-        model.addAttribute("title", title);
-        return "todo/complete";
+    public String completePage(@RequestParam("title") String title) {
+        Todo todo = new Todo();
+        todo.setTitle(title);
+        todo.setCompleted(false);
+        todoService.create(todo);
+        return "redirect:/todo";
     }
 
     public record TodoItem(Long id, String title, String status) {
